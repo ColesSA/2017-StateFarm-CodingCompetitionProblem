@@ -5,35 +5,43 @@ import java.util.Iterator;
 import sf.codingcomp.blocks.BuildingBlock;
 
 public class BuildingBlockImpl implements BuildingBlock {
+    
+    BuildingBlockImpl over,under;
+    
+    public BuildingBlockImpl(){
+        
+    }
 
     @Override
     public Iterator<BuildingBlock> iterator() {
-        // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public void stackOver(BuildingBlock b) {
-        // TODO Auto-generated method stub
-        
+        if(b.getClass()==this.getClass()){
+            this.over = (BuildingBlockImpl)b;
+            b.stackUnder(this);
+        }
     }
 
     @Override
     public void stackUnder(BuildingBlock b) {
-        // TODO Auto-generated method stub
-        
+        if(b.getClass()==this.getClass()){
+            this.under = (BuildingBlockImpl)b;
+            b.stackOver(this);
+        }
     }
 
     @Override
     public BuildingBlock findBlockUnder() {
-        // TODO Auto-generated method stub
-        return null;
+        if(under!=null)return under;
+        else return null;
     }
 
     @Override
     public BuildingBlock findBlockOver() {
-        // TODO Auto-generated method stub
-        return null;
+        if(over!=null)return over;
+        else return null;
     }
-
 }
